@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.RemoteException;
 import android.util.Log;
+
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.TaskParams;
@@ -16,6 +17,7 @@ import com.sam_chordas.android.stockhawk.rest.Utils;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -33,7 +35,17 @@ public class StockTaskService extends GcmTaskService{
   private StringBuilder mStoredSymbols = new StringBuilder();
   private boolean isUpdate;
 
-  public StockTaskService(){}
+//    @Retention(RetentionPolicy.SOURCE)
+//    @IntDef({LOCATION_STATUS_OK, LOCATION_STATUS_SERVER_DOWN, LOCATION_STATUS_SERVER_INVALID,  LOCATION_STATUS_UNKNOWN, LOCATION_STATUS_INVALID})
+//    public @interface LocationStatus {}
+//
+//    public static final int LOCATION_STATUS_OK = 0;
+//    public static final int LOCATION_STATUS_SERVER_DOWN = 1;
+//    public static final int LOCATION_STATUS_SERVER_INVALID = 2;
+//    public static final int LOCATION_STATUS_UNKNOWN = 3;
+//    public static final int LOCATION_STATUS_INVALID = 4;
+
+    public StockTaskService(){}
 
   public StockTaskService(Context context){
     mContext = context;

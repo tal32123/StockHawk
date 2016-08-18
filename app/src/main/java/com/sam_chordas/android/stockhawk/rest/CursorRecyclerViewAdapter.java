@@ -65,6 +65,7 @@ public abstract class CursorRecyclerViewAdapter <VH extends RecyclerView.ViewHol
   }
 
   public Cursor swapCursor(Cursor newCursor){
+
     if (newCursor == mCursor){
       return null;
     }
