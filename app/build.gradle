@@ -35,4 +35,6 @@ dependencies {
         transitive = true
     }
     compile 'com.android.support:support-annotations:24.1.1'
+    compile 'com.diogobernardino:williamchart:2.2'
+
 }
