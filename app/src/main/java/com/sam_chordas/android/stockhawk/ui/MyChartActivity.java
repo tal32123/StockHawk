@@ -10,8 +10,11 @@ import com.db.chart.model.Point;
 import com.db.chart.view.LineChartView;
 import com.sam_chordas.android.stockhawk.R;
 
-public class ChartActivity extends Activity {
-
+public class MyChartActivity extends Activity {
+    /*
+     * Created by Tal Charnes
+     * Credit to Williamchart for the library used in this class for building the chart
+     */
     Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

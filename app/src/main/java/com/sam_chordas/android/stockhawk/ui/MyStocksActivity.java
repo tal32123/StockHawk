@@ -87,7 +87,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             new RecyclerViewItemClickListener.OnItemClickListener() {
               @Override public void onItemClick(View v, int position) {
                 //TODO:
-                  Intent myIntent = new Intent(MyStocksActivity.this, ChartActivity.class);
+                  Intent myIntent = new Intent(MyStocksActivity.this, MyChartActivity.class);
                   MyStocksActivity.this.startActivity(myIntent);              }
             }));
 
@@ -123,6 +123,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                     mServiceIntent.putExtra("tag", "add");
                     mServiceIntent.putExtra("symbol", input.toString());
                     startService(mServiceIntent);
+
                   }
                 }
               })
@@ -235,11 +236,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
           }
       }
-      emptyView.setVisibility(itemCount == 0 ? View.VISIBLE : View.GONE);
+        emptyView.setVisibility(itemCount == 0 ? View.VISIBLE : View.GONE);
 
 
       mCursorAdapter.swapCursor(data);
-    mCursor = data;
+      mCursor = data;
 
   }
 
@@ -247,5 +248,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
   public void onLoaderReset(Loader<Cursor> loader){
     mCursorAdapter.swapCursor(null);
   }
+
 
 }

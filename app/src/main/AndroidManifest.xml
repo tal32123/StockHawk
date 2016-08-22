@@ -42,7 +42,16 @@
             android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
             android:exported="false" />
 
-        <activity android:name=".ui.ChartActivity"></activity>
+        <activity android:name=".ui.MyChartActivity" />
+
+        <receiver
+            android:name=".service.MyToastBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.sam_chordas.android.stockhawk.service.Send"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

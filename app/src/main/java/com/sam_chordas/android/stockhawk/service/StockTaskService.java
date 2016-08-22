@@ -2,6 +2,7 @@ package com.sam_chordas.android.stockhawk.service;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -21,6 +22,7 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 /**
  * Created by sam_chordas on 9/30/15.
@@ -34,7 +36,7 @@ public class StockTaskService extends GcmTaskService{
   private Context mContext;
   private StringBuilder mStoredSymbols = new StringBuilder();
   private boolean isUpdate;
-
+    private boolean isTickerValid;
 //    @Retention(RetentionPolicy.SOURCE)
 //    @IntDef({LOCATION_STATUS_OK, LOCATION_STATUS_SERVER_DOWN, LOCATION_STATUS_SERVER_INVALID,  LOCATION_STATUS_UNKNOWN, LOCATION_STATUS_INVALID})
 //    public @interface LocationStatus {}
@@ -133,8 +135,23 @@ public class StockTaskService extends GcmTaskService{
             mContext.getContentResolver().update(QuoteProvider.Quotes.CONTENT_URI, contentValues,
                 null, null);
           }
-          mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
-              Utils.quoteJsonToContentVals(getResponse));
+
+            ArrayList addedStockSymbol = null;
+            addedStockSymbol = Utils.quoteJsonToContentVals(getResponse);
+            if ( addedStockSymbol.size() != 0 ) {
+                mContext.getContentResolver().applyBatch(QuoteProvider.AUTHORITY,
+                        addedStockSymbol);
+                //stock quote added to list of stocks
+
+            }
+            else{
+                //broadcast to MyStocksActivity that stock ticker isn't valid
+               Intent tickerInvalid = new Intent();
+                tickerInvalid.setAction("com.sam_chordas.android.stockhawk.service.Send");
+                tickerInvalid.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+                sendBroadcast(tickerInvalid);
+            }
+
         }catch (RemoteException | OperationApplicationException e){
           Log.e(LOG_TAG, "Error applying batch insert", e);
         }
