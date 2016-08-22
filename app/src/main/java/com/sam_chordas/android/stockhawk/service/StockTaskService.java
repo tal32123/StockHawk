@@ -2,7 +2,6 @@ package com.sam_chordas.android.stockhawk.service;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -24,6 +23,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+
 /**
  * Created by sam_chordas on 9/30/15.
  * The GCMTask service is primarily for periodic tasks. However, OnRunTask can be called directly
@@ -36,18 +36,8 @@ public class StockTaskService extends GcmTaskService{
   private Context mContext;
   private StringBuilder mStoredSymbols = new StringBuilder();
   private boolean isUpdate;
-    private boolean isTickerValid;
-//    @Retention(RetentionPolicy.SOURCE)
-//    @IntDef({LOCATION_STATUS_OK, LOCATION_STATUS_SERVER_DOWN, LOCATION_STATUS_SERVER_INVALID,  LOCATION_STATUS_UNKNOWN, LOCATION_STATUS_INVALID})
-//    public @interface LocationStatus {}
-//
-//    public static final int LOCATION_STATUS_OK = 0;
-//    public static final int LOCATION_STATUS_SERVER_DOWN = 1;
-//    public static final int LOCATION_STATUS_SERVER_INVALID = 2;
-//    public static final int LOCATION_STATUS_UNKNOWN = 3;
-//    public static final int LOCATION_STATUS_INVALID = 4;
 
-    public StockTaskService(){}
+  public StockTaskService(){}
 
   public StockTaskService(Context context){
     mContext = context;
@@ -145,11 +135,7 @@ public class StockTaskService extends GcmTaskService{
 
             }
             else{
-                //broadcast to MyStocksActivity that stock ticker isn't valid
-               Intent tickerInvalid = new Intent();
-                tickerInvalid.setAction("com.sam_chordas.android.stockhawk.service.Send");
-                tickerInvalid.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-                sendBroadcast(tickerInvalid);
+                
             }
 
         }catch (RemoteException | OperationApplicationException e){

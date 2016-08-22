@@ -92,7 +92,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             }));
 
 
-
     recyclerView.setAdapter(mCursorAdapter);
 
 
@@ -123,7 +122,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                     mServiceIntent.putExtra("tag", "add");
                     mServiceIntent.putExtra("symbol", input.toString());
                     startService(mServiceIntent);
-
                   }
                 }
               })

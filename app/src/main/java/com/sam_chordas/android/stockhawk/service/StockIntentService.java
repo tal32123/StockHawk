@@ -33,6 +33,11 @@ public class StockIntentService extends IntentService {
     }
     catch (NumberFormatException e){
 
+      Log.i(StockIntentService.class.getSimpleName(), "sending broadcast");
+      Intent tickerInvalid = new Intent();
+      tickerInvalid.setAction("com.sam_chordas.android.stockhawk.service.Send");
+      tickerInvalid.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+      sendBroadcast(tickerInvalid);
     }
   }
 }
