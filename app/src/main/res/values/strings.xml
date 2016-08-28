@@ -12,4 +12,6 @@
   <string name="network_toast">Uh-oh! This app requires an internet connection!</string>
   <string name="add_ticker">Add ticker</string>
   <string name="invalid_stock_string">Invalid stock!</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

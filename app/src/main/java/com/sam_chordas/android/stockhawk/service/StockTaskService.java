@@ -135,7 +135,7 @@ public class StockTaskService extends GcmTaskService{
 
             }
             else{
-                
+
             }
 
         }catch (RemoteException | OperationApplicationException e){
