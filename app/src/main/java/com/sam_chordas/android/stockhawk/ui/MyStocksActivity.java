@@ -89,6 +89,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
                 // start chart activity
                   Intent myIntent = new Intent(MyStocksActivity.this, MyChartActivity.class);
+                  myIntent.putExtra("symbol", "AMZN");
                   MyStocksActivity.this.startActivity(myIntent);
   }
             }));

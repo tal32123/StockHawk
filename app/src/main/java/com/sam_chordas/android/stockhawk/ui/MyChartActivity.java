@@ -2,6 +2,7 @@ package com.sam_chordas.android.stockhawk.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -15,6 +16,10 @@ import com.sam_chordas.android.stockhawk.service.RetrofitYQLInterface;
 import com.sam_chordas.android.stockhawk.service.gson.Quote;
 import com.sam_chordas.android.stockhawk.service.gson.Stocks;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,6 +46,8 @@ public class MyChartActivity extends Activity {
         setContentView(R.layout.activity_chart);
 
         mContext = getApplicationContext();
+        Intent myIntent = getIntent();
+        symbol = myIntent.getStringExtra("symbol");
         createChart();
     }
 
@@ -56,9 +63,10 @@ public class MyChartActivity extends Activity {
 
         RetrofitYQLInterface retrofitYQLInterface = retrofit.create(RetrofitYQLInterface.class);
         StringBuilder yqlCallSB = new StringBuilder();
-        symbol = "YHOO";
-        startDate = "2016-08-01";
-        endDate = "2016-08-11";
+
+
+        startDate = getStartDate();
+        endDate = getEndDate();
 
 
         yqlCallSB.append("select * from yahoo.finance.historicaldata where symbol = \"")
@@ -76,7 +84,9 @@ public class MyChartActivity extends Activity {
         call.enqueue(new retrofit2.Callback<Stocks>() {
             @Override
             public void onResponse(Call<Stocks> call, Response<Stocks> response) {
-
+                if(response != null){
+                    Log.i("Retrofit query: ", "failure");
+                }
                 Stocks stocks = response.body();
                 List<Quote> getQuoteList = stocks.getQuery().getResults().getQuote();
                 String closeprice = getQuoteList.get(0).getClose();
@@ -112,5 +122,21 @@ public class MyChartActivity extends Activity {
         lineChartView.setAxisColor(ContextCompat.getColor(mContext, R.color.md_divider_white));
         lineChartView.setLabelsColor(0xffffffff);
         lineChartView.show();
+    }
+    public String getEndDate(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
+        String endDate = mdformat.format(calendar.getTime());
+        return endDate;
+    }
+
+    public String getStartDate(){
+        Calendar cal = GregorianCalendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DAY_OF_YEAR, -7);
+        Date startDate = cal.getTime();
+        SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
+        String startString = mdformat.format(startDate);
+        return startString;
     }
 }
