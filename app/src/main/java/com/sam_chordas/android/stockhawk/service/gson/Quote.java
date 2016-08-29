@@ -6,23 +6,23 @@ import java.util.Map;
 
 public class Quote {
 
-    private String symbol;
-    private String date;
-    private String open;
-    private String high;
-    private String low;
-    private String close;
-    private String volume;
-    private String adjClose;
+    private String Symbol;
+    private String Date;
+    private String Open;
+    private String High;
+    private String Low;
+    private String Close;
+    private String Volume;
+    private String Adj_Close;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
      * @return
-     *     The symbol
+     *     The Symbol
      */
     public String getSymbol() {
-        return symbol;
+        return Symbol;
     }
 
     /**
@@ -31,16 +31,16 @@ public class Quote {
      *     The Symbol
      */
     public void setSymbol(String symbol) {
-        this.symbol = symbol;
+        this.Symbol = symbol;
     }
 
     /**
      * 
      * @return
-     *     The date
+     *     The Date
      */
     public String getDate() {
-        return date;
+        return Date;
     }
 
     /**
@@ -49,16 +49,16 @@ public class Quote {
      *     The Date
      */
     public void setDate(String date) {
-        this.date = date;
+        this.Date = date;
     }
 
     /**
      * 
      * @return
-     *     The open
+     *     The Open
      */
     public String getOpen() {
-        return open;
+        return Open;
     }
 
     /**
@@ -67,16 +67,16 @@ public class Quote {
      *     The Open
      */
     public void setOpen(String open) {
-        this.open = open;
+        this.Open = open;
     }
 
     /**
      * 
      * @return
-     *     The high
+     *     The High
      */
     public String getHigh() {
-        return high;
+        return High;
     }
 
     /**
@@ -85,16 +85,16 @@ public class Quote {
      *     The High
      */
     public void setHigh(String high) {
-        this.high = high;
+        this.High = high;
     }
 
     /**
      * 
      * @return
-     *     The low
+     *     The Low
      */
     public String getLow() {
-        return low;
+        return Low;
     }
 
     /**
@@ -103,16 +103,16 @@ public class Quote {
      *     The Low
      */
     public void setLow(String low) {
-        this.low = low;
+        this.Low = low;
     }
 
     /**
      * 
      * @return
-     *     The close
+     *     The Close
      */
     public String getClose() {
-        return close;
+        return Close;
     }
 
     /**
@@ -121,16 +121,16 @@ public class Quote {
      *     The Close
      */
     public void setClose(String close) {
-        this.close = close;
+        this.Close = close;
     }
 
     /**
      * 
      * @return
-     *     The volume
+     *     The Volume
      */
     public String getVolume() {
-        return volume;
+        return Volume;
     }
 
     /**
@@ -139,25 +139,25 @@ public class Quote {
      *     The Volume
      */
     public void setVolume(String volume) {
-        this.volume = volume;
+        this.Volume = volume;
     }
 
     /**
      * 
      * @return
-     *     The adjClose
+     *     The Adj_Close
      */
-    public String getAdjClose() {
-        return adjClose;
+    public String getAdj_Close() {
+        return Adj_Close;
     }
 
     /**
      * 
-     * @param adjClose
+     * @param adj_Close
      *     The Adj_Close
      */
-    public void setAdjClose(String adjClose) {
-        this.adjClose = adjClose;
+    public void setAdj_Close(String adj_Close) {
+        this.Adj_Close = adj_Close;
     }
 
     public Map<String, Object> getAdditionalProperties() {

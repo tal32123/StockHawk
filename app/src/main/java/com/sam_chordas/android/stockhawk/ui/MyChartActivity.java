@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.db.chart.model.LineSet;
 import com.db.chart.model.Point;
@@ -80,7 +79,7 @@ public class MyChartActivity extends Activity {
 
         call = retrofitYQLInterface.getStocks(yqlCall, JSONFORMAT, DIAGNOSTICS, ENV, CALLBACK);
         Log.i("Retrofit url = ", call.request().url().toString());
-        //// TODO: 8/28/2016 implement onResponse by parsing data and throwing it into points on graph
+
         call.enqueue(new retrofit2.Callback<Stocks>() {
             @Override
             public void onResponse(Call<Stocks> call, Response<Stocks> response) {
@@ -89,13 +88,11 @@ public class MyChartActivity extends Activity {
                 }
                 Stocks stocks = response.body();
                 List<Quote> getQuoteList = stocks.getQuery().getResults().getQuote();
-                String closeprice = getQuoteList.get(0).getClose();
                 String x = getQuoteList.get(0).getSymbol();
-                int responseCode = response.code();
-                Toast.makeText(getApplicationContext(), closeprice + x + responseCode, Toast.LENGTH_SHORT).show();
                 String testString = "";
                 for (int i = 0; i < getQuoteList.size(); i++){
-                   testString = testString + stocks.getQuery().getResults().getQuote().get(i).getClose();
+                   String closePrice = stocks.getQuery().getResults().getQuote().get(i).getClose();
+                    String date = formatDateString(stocks.getQuery().getResults().getQuote().get(i).getDate());
                     Log.i("teststring = ", testString);
                 }
             }
@@ -107,12 +104,12 @@ public class MyChartActivity extends Activity {
         });
 
 
-        String[] labels = new String[]{"1", "2", "3"};
+        String[] labels = new String[]{"08-24", "08-25", "08-26"};
         float[] values = new float[]{(float)9.9, (float)1.0, (float) 3.9};
         LineSet dataset = new LineSet(labels, values);
-        dataset.addPoint(new Point("4", (float)9.9));
-        dataset.addPoint(new Point("5", (float)8.9));
-        dataset.addPoint(new Point("6", (float)7.9));
+        dataset.addPoint(new Point("08-27", (float)9.9));
+        dataset.addPoint(new Point("08-28", (float)8.9));
+        dataset.addPoint(new Point("08-29", (float)7.9));
 
 
         dataset.setColor(ContextCompat.getColor(mContext, R.color.material_green_700));
@@ -138,5 +135,8 @@ public class MyChartActivity extends Activity {
         SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
         String startString = mdformat.format(startDate);
         return startString;
+    }
+    public String formatDateString(String date){
+        return date.substring(5);
     }
 }

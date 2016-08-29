@@ -14,6 +14,5 @@ public class MyToastBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, R.string.invalid_stock_string, Toast.LENGTH_SHORT).show();
-
     }
 }
