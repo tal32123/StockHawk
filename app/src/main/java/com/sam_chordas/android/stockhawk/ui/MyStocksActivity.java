@@ -88,15 +88,16 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
               @Override public void onItemClick(View v, int position) {
 
                 // start chart activity
+                  mCursor.moveToPosition(position);
+                  String symbol = mCursor.getString(mCursor.getColumnIndex("symbol"));
                   Intent myIntent = new Intent(MyStocksActivity.this, MyChartActivity.class);
-                  myIntent.putExtra("symbol", "AMZN");
+                  myIntent.putExtra("symbol", symbol);
                   MyStocksActivity.this.startActivity(myIntent);
   }
             }));
 
 
     recyclerView.setAdapter(mCursorAdapter);
-
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.attachToRecyclerView(recyclerView);

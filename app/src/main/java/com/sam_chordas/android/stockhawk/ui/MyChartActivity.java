@@ -3,12 +3,14 @@ package com.sam_chordas.android.stockhawk.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.db.chart.listener.OnEntryClickListener;
 import com.db.chart.model.LineSet;
-import com.db.chart.model.Point;
 import com.db.chart.view.LineChartView;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.service.RetrofitYQLInterface;
@@ -39,6 +41,8 @@ public class MyChartActivity extends Activity {
     private final String DIAGNOSTICS = "true";
     private final String ENV = "store://datatables.org/alltableswithkeys";
     private final String CALLBACK = "";
+    private String[] labels;
+    private float[] values;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,12 +93,45 @@ public class MyChartActivity extends Activity {
                 Stocks stocks = response.body();
                 List<Quote> getQuoteList = stocks.getQuery().getResults().getQuote();
                 String x = getQuoteList.get(0).getSymbol();
-                String testString = "";
-                for (int i = 0; i < getQuoteList.size(); i++){
-                   String closePrice = stocks.getQuery().getResults().getQuote().get(i).getClose();
-                    String date = formatDateString(stocks.getQuery().getResults().getQuote().get(i).getDate());
-                    Log.i("teststring = ", testString);
-                }
+                labels = new String[getQuoteList.size()];
+                values = new float[getQuoteList.size()];
+
+                int minY = (int)Float.parseFloat(stocks.getQuery().getResults().getQuote().get(1).getClose());
+                int maxY = (int) Float.parseFloat(stocks.getQuery().getResults().getQuote().get(1).getClose());
+
+                    for(int i = 0; i < getQuoteList.size(); i++) {
+                        String closePrice = stocks.getQuery().getResults().getQuote().get(i).getClose();
+                        String date = formatDateString(stocks.getQuery().getResults().getQuote().get(i).getDate());
+                        //get min/max Y values in order to set Y Axis
+                        minY = Math.min(minY, (int)Float.parseFloat(closePrice));
+                        maxY = Math.max(maxY, (int)Float.parseFloat(closePrice));
+                        //need to put in the values opposite from how they are read
+                        labels[getQuoteList.size()-1-i] = date;
+                        values[getQuoteList.size()-1-i] = Float.parseFloat(closePrice);
+                    }
+                //format the table
+                LineSet dataset = new LineSet(labels, values);
+                dataset.setColor(ContextCompat.getColor(mContext, R.color.material_green_700));
+                LineChartView lineChartView = (LineChartView)findViewById(R.id.linechart);
+                lineChartView.addData(dataset);
+                lineChartView.setAxisColor(ContextCompat.getColor(mContext, R.color.md_divider_white));
+                lineChartView.setLabelsColor(0xffffffff);
+                dataset.setDotsRadius(18);
+                dataset.setDotsColor(ContextCompat.getColor(mContext, R.color.material_green_700));
+                lineChartView.setOnEntryClickListener(new OnEntryClickListener() {
+                    @Override
+                    public void onClick(int setIndex, int entryIndex, Rect rect) {
+                        StringBuilder priceString = new StringBuilder();
+                        priceString.append("$")
+                                    .append(values[entryIndex]);
+                        Toast.makeText(getApplicationContext(), priceString, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                lineChartView.setAxisBorderValues(minY-1, maxY+1);
+                //display table
+                lineChartView.show();
             }
 
             @Override
@@ -102,24 +139,9 @@ public class MyChartActivity extends Activity {
                 Log.e("getStocks threw: ", t.getMessage());
             }
         });
-
-
-        String[] labels = new String[]{"08-24", "08-25", "08-26"};
-        float[] values = new float[]{(float)9.9, (float)1.0, (float) 3.9};
-        LineSet dataset = new LineSet(labels, values);
-        dataset.addPoint(new Point("08-27", (float)9.9));
-        dataset.addPoint(new Point("08-28", (float)8.9));
-        dataset.addPoint(new Point("08-29", (float)7.9));
-
-
-        dataset.setColor(ContextCompat.getColor(mContext, R.color.material_green_700));
-
-        LineChartView lineChartView = (LineChartView)findViewById(R.id.linechart);
-        lineChartView.addData(dataset);
-        lineChartView.setAxisColor(ContextCompat.getColor(mContext, R.color.md_divider_white));
-        lineChartView.setLabelsColor(0xffffffff);
-        lineChartView.show();
     }
+
+
     public String getEndDate(){
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd");
