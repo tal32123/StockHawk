@@ -148,10 +148,17 @@ public class StockTaskService extends GcmTaskService{
       }
     }
 
-    Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
-    mContext.sendBroadcast(dataUpdatedIntent);
+   updateWidgets();
 
     return result;
   }
 
+
+  private void updateWidgets() {
+
+            // Setting the package ensures that only components in our app will receive the broadcast
+            Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED)
+                    .setPackage(mContext.getPackageName());
+    mContext.sendBroadcast(dataUpdatedIntent);
+    }
 }

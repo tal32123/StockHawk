@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.sam_chordas.android.stockhawk.R;
@@ -18,10 +19,12 @@ public class StockWidgetIntentService extends IntentService{
 
     public StockWidgetIntentService(){
         super("StockWidgetIntentService");
+
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.i(StockWidgetIntentService.class.getSimpleName(), "Handling intent");
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, StockWidgetProvider.class));
 
