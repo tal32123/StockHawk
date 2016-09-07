@@ -6,7 +6,9 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.sam_chordas.android.stockhawk.R;
@@ -63,7 +65,7 @@ public class StockWidgetIntentService extends IntentService{
             data.close();
             return;
         }
-
+        Log.i(StockWidgetIntentService.class.getSimpleName(), DatabaseUtils.dumpCursorToString(data));
         int stockID = data.getInt(INDEX_STOCK_ID);
         String stockSymbol = data.getString(INDEX_SYMBOL);
         String bidPrice = data.getString(INDEX_BIDPRICE);
@@ -85,9 +87,13 @@ public class StockWidgetIntentService extends IntentService{
 
 //            views.setEmptyView(R.id.widget_listview, R.id.widget_listview_emptyview);
 
-            views.setTextViewText(R.id.widget_ticker, stockSymbol);
-            views.setTextViewText(R.id.widget_percent, percentChange);
-            views.setTextViewText(R.id.widget_change, change);
+            views.setTextViewText(R.id.widget_symbol, stockSymbol);
+            views.setTextViewText(R.id.widget_change, percentChange);
+            views.setTextViewText(R.id.widget_bid_price, bidPrice);
+            if(isUP == 1){
+
+            }
+            else;
 
 
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, launchIntent, 0);
