@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.sam_chordas.android.stockhawk.service.StockTaskService;
 
@@ -20,6 +19,7 @@ public class StockWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
        context.startService(new Intent(context, StockWidgetIntentService.class));
+
     }
 
     @Override
@@ -31,7 +31,7 @@ public class StockWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         if (StockTaskService.ACTION_DATA_UPDATED.equals(intent.getAction())){
-            Log.i(StockWidgetProvider.class.getSimpleName(), "Broadcast Received");
+
             context.startService(new Intent(context, StockWidgetIntentService.class));
         }
     }
