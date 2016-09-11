@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Binder;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
@@ -103,6 +104,11 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 
                 views.setTextViewText(R.id.stock_symbol, stockSymbol);
                 views.setTextViewText(R.id.bid_price, bidPrice);
+                if (data.getInt(data.getInt(isUP)) == 1) {
+                    views.setTextColor(R.id.change, ContextCompat.getColor(getApplicationContext(), R.color.material_green_700));
+                } else {
+                    views.setTextColor(R.id.change, ContextCompat.getColor(getApplicationContext(), R.color.material_red_700));
+                }
                 views.setTextViewText(R.id.change, percentChange);
 
                 final Intent chartIntent = new Intent();
