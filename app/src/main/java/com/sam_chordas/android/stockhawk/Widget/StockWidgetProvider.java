@@ -50,7 +50,6 @@ public class StockWidgetProvider extends AppWidgetProvider {
     }
 
 
-
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);

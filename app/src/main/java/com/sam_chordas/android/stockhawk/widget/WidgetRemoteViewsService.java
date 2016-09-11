@@ -32,13 +32,13 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
     private static final int INDEX_PERCENT_CHANGE = 3;
     private static final int INDEX_CHANGE = 4;
     private static final int INDEX_ISUP = 5;
+    private Cursor data;
 
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         Log.i(LOG_TAG,"onGetViewFactory called");
         return new RemoteViewsFactory() {
-            private Cursor data = null;
 
             @Override
             public void onCreate() {
@@ -56,7 +56,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
                 final long identityToken = Binder.clearCallingIdentity();
 
                 Uri uri = QuoteProvider.Quotes.CONTENT_URI;
-                Cursor data = getContentResolver().query(
+                data = getContentResolver().query(
                         uri,
                         QUOTE_COLUMNS,
                         QuoteColumns.ISCURRENT + " = ?",
@@ -104,7 +104,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 
                 views.setTextViewText(R.id.stock_symbol, stockSymbol);
                 views.setTextViewText(R.id.bid_price, bidPrice);
-                if (data.getInt(data.getInt(isUP)) == 1) {
+                if (isUP == 1) {
                     views.setTextColor(R.id.change, ContextCompat.getColor(getApplicationContext(), R.color.material_green_700));
                 } else {
                     views.setTextColor(R.id.change, ContextCompat.getColor(getApplicationContext(), R.color.material_red_700));
