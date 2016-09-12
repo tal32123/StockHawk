@@ -19,6 +19,7 @@
   <!--String shows when no network available.-->
   <string name="network_toast">Uh-oh! This app requires an internet connection!</string>
 
+  <!--Content Description for FAB-->
   <string name="add_ticker">Add ticker</string>
 
   <!--String shows when added symbol is not valid.-->
@@ -33,4 +34,7 @@
   <!-- The following strings are for the widget description for assisted devices -->
   <string name="this_stock_has_changed">" This stock has changed "</string>
   <string name="current_bid_price_is">" The current bid price is "</string>
+
+  <!--EmptyView for MyStocksActivity-->
+  <string name="no_data_available_to_show">No data available to show</string>
 </resources>

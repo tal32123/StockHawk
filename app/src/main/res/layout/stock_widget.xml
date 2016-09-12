@@ -14,6 +14,7 @@
             android:id="@+id/widget_bar"
         android:orientation="horizontal"
             android:layout_width="match_parent"
+        android:layoutDirection="locale"
             android:layout_height="@dimen/abc_action_bar_default_height_material"
             android:background="@color/md_btn_selected_dark">
             <ImageView
