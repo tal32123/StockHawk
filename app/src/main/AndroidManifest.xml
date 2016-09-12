@@ -37,8 +37,7 @@
                 <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
             </intent-filter>
         </service>
-        <!--<service android:name=".service.StockIntentService" />-->
-        <!--<service android:name=".widget.WidgetRemoteViewsService" />-->
+        <service android:name=".service.StockIntentService" />
         <provider
             android:name=".data.generated.QuoteProvider"
             android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"

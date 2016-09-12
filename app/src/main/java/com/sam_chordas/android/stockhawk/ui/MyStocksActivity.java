@@ -131,6 +131,9 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 }
               })
                   .contentColor(ContextCompat.getColor(getApplicationContext(), R.color.black))
+                  .positiveColor(ContextCompat.getColor(getApplicationContext(), R.color.black))
+                  .negativeColor(ContextCompat.getColor(getApplicationContext(), R.color.black))
+                  .titleColor((ContextCompat.getColor(getApplicationContext(), R.color.black)))
                   .backgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.md_btn_selected_dark))
               .show();
         } else {
