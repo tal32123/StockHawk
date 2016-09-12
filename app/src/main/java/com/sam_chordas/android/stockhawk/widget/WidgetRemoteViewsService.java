@@ -110,7 +110,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
                 views.setTextViewText(R.id.change, percentChange);
 
                 final Intent chartIntent = new Intent();
-               chartIntent.putExtra("symbol", stockSymbol);
+               chartIntent.putExtra(getString(R.string.symbol), stockSymbol);
                 chartIntent.setData(QuoteProvider.Quotes.CONTENT_URI);
                 views.setOnClickFillInIntent(R.id.widget_list_item, chartIntent);
 
@@ -152,7 +152,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
         StringBuilder description = new StringBuilder();
         for(int i = 0; i < stockSymbol.length(); i++){
             description.append(stockSymbol.charAt(i));
-            description.append(" ");
+            description.append(getString(R.string.blank_space));
         }
         description.append(getString(R.string.this_stock_has_changed));
         description.append(percentChange);

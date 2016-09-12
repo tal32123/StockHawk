@@ -5,7 +5,7 @@
   <string name="action_example" translatable="false">Example action</string>
 
   <string name="action_settings">Settings</string>
-  <string name="action_change_units">Change Units</string>
+  <string name="action_change_units" translatable="false">Change Units</string>
 
   <!--Used while adding a stock symbol in MyStocksActivity-->
   <string name="symbol_search">Symbol Search</string>
@@ -34,7 +34,34 @@
   <!-- The following strings are for the widget description for assisted devices -->
   <string name="this_stock_has_changed">" This stock has changed "</string>
   <string name="current_bid_price_is">" The current bid price is "</string>
+  <string name="blank_space" translatable="false"> </string>
 
   <!--EmptyView for MyStocksActivity-->
   <string name="no_data_available_to_show">No data available to show</string>
+
+  <!--Shows when stock is already in list-->
+  <string name="stock_saved_already">This stock is already saved!</string>
+  <!--Just a tag-->
+  <string name="periodicTag" translatable="false">periodic</string>
+
+  <!--Another EmptyView string-->
+  <string name="restart_app_once_connected">" Please restart app once connected to network."</string>
+
+  <!--The following are network calls-->
+  <string name="yql_call" translatable="false">select * from yahoo.finance.historicaldata where symbol = \"</string>
+  <string name="yql_start_date" translatable="false">\" and startDate = \"</string>
+  <string name="yql_end_date" translatable="false">\" and endDate = \"</string>
+  <string name="close_yql" translatable="false">\"</string>
+
+  <!--following are called on failures-->
+  <string name="retrofit_failure" translatable="false">"Retrofit query: "</string>
+  <string name="getstocks_failure" translatable="false">"getStocks threw: "</string>
+
+  <!--This is needed for date formatting-->
+  <string name="date_format" translatable="false">yyyy-MM-dd</string>
+
+  <!--following are retrofit calls-->
+  <string name="symbol" translatable="false">symbol</string>
+
+
 </resources>

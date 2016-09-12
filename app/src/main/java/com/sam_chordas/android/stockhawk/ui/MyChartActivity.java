@@ -50,7 +50,7 @@ public class MyChartActivity extends Activity {
 
         mContext = getApplicationContext();
         Intent myIntent = getIntent();
-        symbol = myIntent.getStringExtra("symbol");
+        symbol = myIntent.getStringExtra(getString(R.string.symbol));
         createChart();
     }
 
@@ -82,13 +82,12 @@ public class MyChartActivity extends Activity {
         String yqlCall = yqlCallSB.toString();
 
         call = retrofitYQLInterface.getStocks(yqlCall, JSONFORMAT, DIAGNOSTICS, ENV, CALLBACK);
-        Log.i("Retrofit url = ", call.request().url().toString());
 
         call.enqueue(new retrofit2.Callback<Stocks>() {
             @Override
             public void onResponse(Call<Stocks> call, Response<Stocks> response) {
                 if(response != null){
-                    Log.i("Retrofit query: ", "failure");
+                    Log.i(getString(R.string.retrofit_failure), "failure");
                 }
                 Stocks stocks = response.body();
                 List<Quote> getQuoteList = stocks.getQuery().getResults().getQuote();
@@ -136,7 +135,7 @@ public class MyChartActivity extends Activity {
 
             @Override
             public void onFailure(Call<Stocks> call, Throwable t) {
-                Log.e("getStocks threw: ", t.getMessage());
+                Log.e(getString(R.string.getstocks_failure), t.getMessage());
             }
         });
     }

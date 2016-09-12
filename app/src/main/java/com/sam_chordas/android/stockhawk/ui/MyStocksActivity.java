@@ -92,7 +92,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                   mCursor.moveToPosition(position);
                   String symbol = mCursor.getString(mCursor.getColumnIndex("symbol"));
                   Intent myIntent = new Intent(MyStocksActivity.this, MyChartActivity.class);
-                  myIntent.putExtra("symbol", symbol);
+                  myIntent.putExtra(getString(R.string.symbol), symbol);
                   MyStocksActivity.this.startActivity(myIntent);
   }
             }));
@@ -117,15 +117,15 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                       new String[] { input.toString() }, null);
                   if (c.getCount() != 0) {
                     Toast toast =
-                        Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
+                        Toast.makeText(MyStocksActivity.this, R.string.stock_saved_already,
                             Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                     toast.show();
                     return;
                   } else {
                     // Add the stock to DB
-                    mServiceIntent.putExtra("tag", "add");
-                    mServiceIntent.putExtra("symbol", input.toString());
+                      mServiceIntent.putExtra("tag", "add");
+                    mServiceIntent.putExtra(getString(R.string.symbol), input.toString());
                     startService(mServiceIntent);
                   }
                 }
@@ -201,10 +201,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
+//      Only uncomment if adding a settings button
+//    //noinspection SimplifiableIfStatement
+//    if (id == R.id.action_settings) {
+//      return true;
+//    }
 
     if (id == R.id.action_change_units){
       // this is for changing stock changes from percent value to dollar value
@@ -240,7 +241,10 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
       }
       if (itemCount == 0){
           if (!isConnected){
-              emptyView.setText(getString(R.string.network_toast) + " Please restart app once connected to network.");
+              StringBuilder sb = new StringBuilder();
+              sb.append(getString(R.string.network_toast))
+                      .append(getString(R.string.restart_app_once_connected));
+              emptyView.setText(sb.toString());
 
           }
       }
