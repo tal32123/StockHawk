@@ -85,7 +85,7 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
                     return null;
                 }
                 RemoteViews views = new RemoteViews(getPackageName(),
-                        R.layout.list_item_quote);
+                        R.layout.widget_list_item_quote);
 
 
                 int stockID = data.getInt(INDEX_STOCK_ID);
@@ -118,12 +118,12 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
                 return views;
             }
             private void setRemoteContentDescription(RemoteViews views, String description) {
-                views.setContentDescription(R.layout.list_item_quote, description);
+                views.setContentDescription(R.layout.widget_list_item_quote, description);
             }
 
             @Override
             public RemoteViews getLoadingView() {
-                return new RemoteViews(getPackageName(), R.layout.list_item_quote);
+                return new RemoteViews(getPackageName(), R.layout.widget_list_item_quote);
             }
 
             @Override
@@ -142,12 +142,10 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
 
             @Override
             public boolean hasStableIds() {
-                //Change to false if same id ends up referring to different object. Shouldn't be necessary.
                 return true;
             }
         };
 
-           // return null;
 
     }
     public String makeDescriptionString(String stockSymbol, String percentChange, String bidPrice){
@@ -156,9 +154,9 @@ public class WidgetRemoteViewsService extends RemoteViewsService {
             description.append(stockSymbol.charAt(i));
             description.append(" ");
         }
-        description.append("This stock has changed");
+        description.append(getString(R.string.this_stock_has_changed));
         description.append(percentChange);
-        description.append("The current bid price is");
+        description.append(getString(R.string.current_bid_price_is));
         description.append(bidPrice);
 
         return description.toString();

@@ -12,6 +12,7 @@ import android.widget.RemoteViews;
 
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.service.StockTaskService;
+import com.sam_chordas.android.stockhawk.ui.MyChartActivity;
 import com.sam_chordas.android.stockhawk.ui.MyStocksActivity;
 
 
@@ -39,7 +40,7 @@ public class StockWidgetProvider extends AppWidgetProvider {
 
 
             PendingIntent clickPendingIntentTemplate = TaskStackBuilder.create(context)
-                    .addNextIntentWithParentStack(new Intent(context, MyStocksActivity.class))
+                    .addNextIntentWithParentStack(new Intent(context, MyChartActivity.class))
                     .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
             views.setPendingIntentTemplate(R.id.widget_list, clickPendingIntentTemplate);

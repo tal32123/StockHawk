@@ -11,7 +11,6 @@
     <permission
         android:name="com.google.android.gcm.demo.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-
     <uses-permission android:name="com.google.android.gcm.demo.permission.C2D_MESSAGE" />
 
     <application
@@ -43,7 +42,14 @@
             android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
             android:exported="false" />
 
-        <activity android:name=".ui.MyChartActivity" />
+        <activity android:name=".ui.MyChartActivity"
+            android:parentActivityName=".ui.MyStocksActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MyStocksActivity"
+                />
+
+        </activity>
 
         <receiver
             android:name=".service.MyToastBroadcastReceiver"
