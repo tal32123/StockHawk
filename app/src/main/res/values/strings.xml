@@ -47,12 +47,6 @@
   <!--Another EmptyView string-->
   <string name="restart_app_once_connected">" Please restart app once connected to network."</string>
 
-  <!--The following are network calls-->
-  <string name="yql_call" translatable="false">select * from yahoo.finance.historicaldata where symbol = \"</string>
-  <string name="yql_start_date" translatable="false">\" and startDate = \"</string>
-  <string name="yql_end_date" translatable="false">\" and endDate = \"</string>
-  <string name="close_yql" translatable="false">\"</string>
-
   <!--following are called on failures-->
   <string name="retrofit_failure" translatable="false">"Retrofit query: "</string>
   <string name="getstocks_failure" translatable="false">"getStocks threw: "</string>
