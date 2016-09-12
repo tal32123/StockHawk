@@ -18,6 +18,7 @@ import com.sam_chordas.android.stockhawk.ui.MyStocksActivity;
 
 /**
  * Implementation of App Widget functionality.
+ * Credit for Udacity for help!
  */
 public class StockWidgetProvider extends AppWidgetProvider {
 

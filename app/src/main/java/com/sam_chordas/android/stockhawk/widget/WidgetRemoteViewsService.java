@@ -16,6 +16,7 @@ import com.sam_chordas.android.stockhawk.data.QuoteProvider;
 /**
  * Created by Tal on 9/5/2016.
  * This will be a remote views that controls the data being shown in the stock widget
+ * Credit for Udacity for help
  */
 public class WidgetRemoteViewsService extends RemoteViewsService {
     public String LOG_TAG = WidgetRemoteViewsService.class.getSimpleName();

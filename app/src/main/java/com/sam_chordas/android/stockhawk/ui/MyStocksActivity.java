@@ -42,6 +42,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
   /**
    * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
+   * Credit to sam Chordas for creating much of this and app in general!
    */
 
   /**

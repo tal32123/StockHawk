@@ -32,6 +32,7 @@ public class MyChartActivity extends Activity {
     /*
      * Created by Tal Charnes
      * Credit to Williamchart for the library used in this class for building the chart
+     * Credit to Retrofit for helping with API calls
      */
     Context mContext;
     private String startDate;
