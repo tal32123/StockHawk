@@ -11,4 +11,5 @@ An app that tracks stocks!
  * Added widgets
  * Added a library
  * Used Retrofit API to get data from YQL
-
+ 
+## Screenshots
