@@ -1,6 +1,8 @@
 # StockHawk
 Track your stocks with the Stock Hawk app!
 
+## NOTE: Yahoo API no longer works with 90% of stocks tested
+
 ## Work Done on App
  In this project I have productionized an app, taking it from a functional state to a production-ready state. To do this I have:
  
