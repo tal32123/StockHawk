@@ -15,6 +15,6 @@ Track your stocks with the Stock Hawk app!
  * Used Retrofit API to get data from YQL
  
 ## Screenshots
-![Screenshot 1](/Screenshots/Screenshot (1).png "Screenshot 1")
+![Screenshot 1](https://github.com/tal32123/StockHawk/blob/master/Screenshots/Screenshot%20(1).png "Screenshot 1")
 ![Screenshot 3](/Screenshots/Screenshot (3).png "Screenshot 3")
 ![Widget Screenshot](/Screenshots/Screenshot (2).png "Widget Screenshot")
