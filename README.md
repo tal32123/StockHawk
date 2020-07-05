@@ -1,5 +1,5 @@
 # StockHawk
-Track your stocks with the Stock Hawk app!
+Track your favorite stocks with the Stock Hawk app!
 
 ## NOTE: Yahoo API no longer works with 90% of stocks tested
 
